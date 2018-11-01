@@ -1,0 +1,24 @@
+{
+  "name": "LIRI-Node-App",
+  "version": "1.0.0",
+  "description": "Language Interpretation and Recognition Interface in Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiRuaG/LIRI-Node-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NiRuaG/LIRI-Node-App/issues"
+  },
+  "homepage": "https://github.com/NiRuaG/LIRI-Node-App#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "request": "^2.88.0"
+  }
+}

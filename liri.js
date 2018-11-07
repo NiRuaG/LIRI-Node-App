@@ -66,7 +66,7 @@ const LIRI_COMMANDS = {
           events = JSON.parse(body);
         }
         catch(error) {
-          logThis(`Sorry, LIRI could not understand what Band In Town returned:\n\t${body}\n\t${error}`);
+          logThis(`Sorry, LIRI could not understand what Bands In Town returned:\n\t${body}\n\t${error}`);
           return;
         }
         // console.log(events);
@@ -95,7 +95,7 @@ const LIRI_COMMANDS = {
 
       //* Unsucessful Request
       else {
-        logThis("There was a problem with trying the search.\n", error);
+        logThis(`There was a problem with trying the search.\n${error}`);
         return;
       }
 
@@ -148,7 +148,7 @@ const LIRI_COMMANDS = {
         });
       })
       .catch(function (error) {
-        logThis("There was a problem with trying the search.\n", error);
+        logThis(`There was a problem with trying the search.\n${error}`);
         return;
       });      
   },
@@ -184,18 +184,19 @@ const LIRI_COMMANDS = {
           movieObj = JSON.parse(body);
         }
         catch(error) {
-          logThis("Sorry, LIRI could not understand what OMDB returned:\n", body, error);
+          logThis(`Sorry, LIRI could not understand what OMDB returned:\n${body}\n${error}`);
           return
         }
 
-        //* movieObj - Edge Cases
+        //* movieObj - Error Cases
         if (movieObj.Response === 'False') {
-            logThis(`Sorry, OMDB had a problem searching for '${searchTerm}':\n`, movieObj.Error);
+            logThis(`Sorry, OMDB had a problem searching for '${searchTerm}':\n${movieObj.Error}`);
             return;
         }
         // console.log(movieObj);
         
         //* Typical Case
+        // see if movie has a rating by Rotten Tomatoes
         let RTRating = "";
         const RTindex = movieObj.Ratings.map(rating => rating.Source).indexOf('Rotten Tomatoes');
         if (RTindex >= 0) {
@@ -222,7 +223,7 @@ const LIRI_COMMANDS = {
 
       //* Unsuccessful Request
       else { 
-        logThis("There was a problem with trying the search.\n", error);
+        logThis(`There was a problem with trying the search.\n${error}`);
         return;
       }
 
@@ -252,7 +253,7 @@ const LIRI_COMMANDS = {
 
     fs.readFile(fileName, "utf8", function (error, data) {
       if (error) {
-        logThis(`There was a problem trying to read file '${fileName}'.\n`, error);
+        logThis(`There was a problem trying to read file '${fileName}'.\n${error}`);
         return error;
       }
 
@@ -261,7 +262,7 @@ const LIRI_COMMANDS = {
       // console.log(instructions);
       let fileCommand = instructions[0];
       if (!fileCommand || !fileCommand.trim()) {
-        logThis("Could not find a command in file.\n", data);
+        logThis(`Could not find a command in file.\n${data}`);
         return;
       }
 

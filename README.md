@@ -1,5 +1,5 @@
 # LIRI-Node-App
- **L**anguage **I**nterpretation and **R**ecognition **I**nterface in Node
+[__L__]anguage [__I__]nterpretation and [__R__]ecognition [__I__]nterface in Node
 
 ## To use LIRI App
 You will need API Keys/Secrets for the following:  
@@ -47,8 +47,5 @@ This will execute other LIRI commands, as read from a text file.
 Example usage:  
 > `node liri.js do-what-it-says random.txt`  
 
-Where `random.txt` contains:  
+*Where `random.txt` contains:*  
 > `spotify-this-song,"I Want it That Way"`  
-
-Example results:  
-> ``  

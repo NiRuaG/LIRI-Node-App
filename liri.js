@@ -1,5 +1,5 @@
 //#region NPM
-const ENV           = require('dotenv').config();
+require('dotenv').config();
 const request       = require('request');
 const moment        = require('moment');
 const SpotifyModule = require('node-spotify-api');
@@ -54,14 +54,18 @@ const LIRI_COMMANDS = {
 
       //* Successful Request
       if (!error && response.statusCode === 200) {
-        //* body - Catch API return warnings
+        //* body - Catch API return warnings & errors
         if (body.startsWith("{warn=")) {
           logThis(`Bands In Town returned with warning:\n\t${body.slice(6, -2)}`);
           return;
         }
+        if (body.startsWith("{error=")) {
+          logThis(`Bands In Town returned with error:\n\t${body.slice(7, -2)}`);
+          return;
+        }
 
-        let events;
         //* events - Try/Catch JSON
+        let events;
         try {
           events = JSON.parse(body);
         }
@@ -83,11 +87,11 @@ const LIRI_COMMANDS = {
           const outputFormat = 
             `\n#${index+1}`
           // Date of the Event (use moment to format this as "MM/DD/YYYY")
-          + `\t${moment(event.datetime).format("MM/DD/YYYY")}\n`
+          + `\t${moment(event.datetime).format("MM/DD/YYYY")}`
           // Name of the venue
-          + `\t@ ${event.venue.name}\n`
+          + `\n\t@ ${event.venue.name}`
           // Venue location
-          + `\t\tin ${event.venue.city}, ${event.venue.country}`;
+          + `\n\t\tin ${event.venue.city}, ${event.venue.country}`;
 
            logThis(outputFormat);
         });
@@ -118,7 +122,7 @@ const LIRI_COMMANDS = {
       searchTerm = "The Sign Ace of Base";
     }
 
-    console.log(`\nUp to 5 Spotify search results for song '${searchTerm}':`);
+    console.log(`\nUp to 5 Spotify search results for song '${searchTerm}':\n`);
 
     spotify
       .search({
@@ -140,9 +144,9 @@ const LIRI_COMMANDS = {
           // The song's name
           + `\t'${track.name}'`
           // Artist(s) & The album that the song is from
-          + `\tby '${track.artists[0].name}' on '${track.album.name}'`
+          + `\n\tby '${track.artists[0].name}' on '${track.album.name}'`
           // A preview link of the song from Spotify
-          + `\t30s preview: ${(track.preview_url || 'not available')}`;
+          + `\n\t30s preview: ${(track.preview_url || 'not available')}`;
           
           logThis(outputFormat);
         });
@@ -184,7 +188,7 @@ const LIRI_COMMANDS = {
           movieObj = JSON.parse(body);
         }
         catch(error) {
-          logThis(`Sorry, LIRI could not understand what OMDB returned:\n${body}\n${error}`);
+          logThis(`Sorry, LIRI could not understand what OMDB returned:\n\t${body}\n\t${error}`);
           return
         }
 
@@ -208,12 +212,12 @@ const LIRI_COMMANDS = {
         + `\n${'-'.repeat(movieObj.Title.length)}`
 
         + `\nYear              : ${movieObj.Year           || 'unknown'}`
-        + `\nProduction Country: ${movieObj.Country        || 'unknown'}`
+        + `\nProduction Country: ${movieObj.Country        || 'unknown'}\n`
 
         + `\nLanguage(s): ${movieObj.Language              || 'unknown'}`
-        + `\n   Actor(s): ${movieObj.Actors                || 'unknown'}`
+        + `\n   Actor(s): ${movieObj.Actors                || 'unknown'}\n`
 
-        + `\n${movieObj.Plot                               || '(No plot)'}`
+        + `\n${movieObj.Plot                               || '(No plot)'}\n`
 
         + `\nIMDB            Rating: ${movieObj.imdbRating || 'unknown'}`
         + `\nRotten Tomatoes Rating: ${RTRating            || 'unknown'}`;
@@ -279,7 +283,7 @@ const LIRI_COMMANDS = {
 
       let fileParameters = instructions.slice(1);
       // console.log(fileCommand, fileParameters);
-      const logMessage = `${fileCommand},${fileParameters.join(" ")}`;
+      const logMessage = `\n${fileCommand},${fileParameters.join(" ")}`;
       logThis(logMessage + `\n${'-'.repeat(logMessage.length)}`, false);
 
       LIRI_COMMANDS[fileCommand](fileParameters);
@@ -307,7 +311,7 @@ if (!Object.hasOwnProperty.call(LIRI_COMMANDS, command)) {
 }
 
 const parameters = process.argv.slice(3);
-const logMessage = `${command},${parameters.join(" ")}`;
+const logMessage = `\n${command},${parameters.join(" ")}`;
 logThis(logMessage + `\n${'-'.repeat(logMessage.length)}`, false);
 
 

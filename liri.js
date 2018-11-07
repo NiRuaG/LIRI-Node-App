@@ -38,7 +38,7 @@ const LIRI_COMMANDS = {
     //* params - Validate / Manipulate
     let searchTerm = params.join(" ").trim();
     if (!searchTerm) {
-      console.log("LIRI CONCERT needs an artist or band name for which to search.");
+      logThis("LIRI CONCERT needs an artist or band name for which to search.");
       console.log("Usage:\n\tliri concert-this <artist/band>");
 
       //! no default search, return from call
@@ -269,6 +269,11 @@ const LIRI_COMMANDS = {
       if (!Object.hasOwnProperty.call(LIRI_COMMANDS, fileCommand)) {
         logThis(`LIRI doesn't know how to '${fileCommand}'`);
         return; //? continue? with for loop over multiple instructions
+      }
+      //* fileCommand - Edge Cases
+      if (fileCommand === "do-what-it-says") {
+        logThis(`Sorry, LIRI can't (or won't) chain 'do-what-it-says' commands from file.`);
+        return;
       }
 
       let fileParameters = instructions.slice(1);

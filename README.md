@@ -9,6 +9,11 @@ You will need API Keys/Secrets for the following:
 
 Refer to the included `key.js` file and the [dotenv](https://www.npmjs.com/package/dotenv) npm documentation, to place the above in a `.env` file. 
 
+
+## Demo Videos
+[DEMO Video 1 of 2](https://drive.google.com/open?id=1r1ySxxurHJ3MIHqnx8JxVikLiMSkTj_W)  
+[DEMO Video 2 of 2](https://drive.google.com/open?id=1MxrscEutHIL7SUCdmLITeRqiNj4lGz05)
+
 ## LIRI Commands
 ### 1. `CONCERT-THIS`  
 This will search the *Bands in Town Artist's Events API* for an **ARTIST/BAND** and show information about their upcoming events.  

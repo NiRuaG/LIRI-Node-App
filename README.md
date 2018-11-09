@@ -11,8 +11,8 @@ Refer to the included `key.js` file and the [dotenv](https://www.npmjs.com/packa
 
 
 ## Demo Videos
-[DEMO Video 1 of 2](https://drive.google.com/open?id=1r1ySxxurHJ3MIHqnx8JxVikLiMSkTj_W)  
-[DEMO Video 2 of 2](https://drive.google.com/open?id=1MxrscEutHIL7SUCdmLITeRqiNj4lGz05)
+* [DEMO Video 1 of 2](https://drive.google.com/open?id=1r1ySxxurHJ3MIHqnx8JxVikLiMSkTj_W)  
+* [DEMO Video 2 of 2](https://drive.google.com/open?id=1MxrscEutHIL7SUCdmLITeRqiNj4lGz05)
 
 ## LIRI Commands
 ### 1. `CONCERT-THIS`  
